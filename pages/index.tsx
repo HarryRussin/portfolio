@@ -1,84 +1,122 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { BsTwitter, BsInstagram } from 'react-icons/bs'
+import { AiOutlineLinkedin } from 'react-icons/ai'
+import { AnimateSharedLayout, motion } from 'framer-motion'
+import AboutPage from '../components/about'
+
+const pages = 4
+
+const spring = {
+  type: 'spring',
+  stiffness: 500,
+  damping:25,
+}
+
+const Pagination = ({
+  i,
+  page,
+  onClick,
+}: {
+  i: number
+  page: number
+  onClick: () => void
+}) => (
+  <li className="relative w-5 h-5" onClick={onClick}>
+    <div className={`dot ${i === page && 'selectedPage'}`}></div>
+
+    {i === page && (
+      <motion.div
+        layoutId="outline"
+        initial={false}
+        transition={spring}
+        className="h-6 w-6 border-[3px] border-black rounded-full absolute bg-transparent"
+      />
+    )}
+  </li>
+)
 
 const Home: NextPage = () => {
+  const [page, setpage] = useState(0)
+
+  function changePage(event: KeyboardEvent) {
+    switch (event.code) {
+      case 'ArrowLeft':
+        setpage(page <= 0 ? pages - 1 : page - 1)
+        break
+      case 'ArrowRight':
+        setpage(page >= pages - 1 ? 0 : page + 1)
+        break
+      case 'KeyA':
+        setpage(page <= 0 ? pages - 1 : page - 1)
+        break
+      case 'KeyD':
+        setpage(page >= pages - 1 ? 0 : page + 1)
+        break
+      default:
+        break
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', changePage)
+
+    return () => {
+      window.removeEventListener('keydown', changePage)
+    }
+  }, [page])
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex h-screen border-l-[32px] border-t-[32px] border-black box-border">
       <Head>
-        <title>Create Next App</title>
+        <title>Harry Russin - A Digital Creator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      {/* LEFT */}
+      <div className="w-1/2 bg-[#EBE4D8] relative"></div>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+      {/* RIGHT */}
+      <div className="w-1/2 bg-[#ECDFC7]"></div>
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
+      {/* MAIN CONTENT */}
+      <div className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        {page === 0 ? (
+          <div className=" text-center ">
+            <h1 className="font-major text-8xl mb-3 w-max">HARRY RUSSIN</h1>
+            <h3 className="font-major text-2xl">digital creator</h3>
+          </div>
+        ) : page === 1 ? (
+          <AboutPage />
+        ) : page === 2 ? (
+          <></>
+        ) : (
+          page === 3 && <></>
+        )}
+      </div>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+      <div className="group absolute">
+        <div className="bg-black w-[8vw] group-hover:w-[6.5vw] group-hover:h-[6.5vw] transition-all h-[8vw] rounded-br-full absolute"></div>
+        <div className="bg-black w-[7.5vw] h-[7.5vw] group-hover:w-[6.95vw] group-hover:h-[6.95vw] transition-all rounded-br-full border-[#EBE4D8] absolute border-r-[0.5vw] border-b-[0.5vw]"></div>
+      </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+      <AnimateSharedLayout>
+        <ul className="absolute left-1/2 -translate-x-1/2 bottom-8 flex space-x-3">
+          {[...new Array(pages)].map((q, i) => (
+            <Pagination key={i} i={i} page={page} onClick={() => setpage(i)} />
+          ))}
+        </ul>
+      </AnimateSharedLayout>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className="bg-black w-[44px] h-screen absolute top-0 right-[3vw] flex flex-col items-center justify-end">
+        <div className="flex flex-col space-y-4 mb-12">
+          <BsInstagram className="text-gray-500 w-6 h-6" />
+          <AiOutlineLinkedin className="text-gray-500 w-6 h-6" />
+
+          <BsTwitter className="text-gray-500 w-6 h-6" />
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+      </div>
     </div>
   )
 }
