@@ -59,10 +59,12 @@ function index() {
               id={2}
               name="Luna Bakehouse"
               link="https://lunabakes.vercel.app"
+              img='/'
             />
           </div>
           <div className="mt-40">
-            <Portfolio_card id={3} name="Blobparty" link="#" />
+            <Portfolio_card id={3} name="Blobparty" link="#" img='/'/>
+  
           </div>
         </div>
       </section>
