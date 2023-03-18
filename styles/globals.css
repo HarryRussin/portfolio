@@ -13,4 +13,7 @@
     .link{
         @apply hover:text-accent-2 active:text-accent-3 transition-all hover:underline
     }
+    .xlresponsive {
+        @apply xl:mx-auto xl:max-w-[1600px]
+    }
 }

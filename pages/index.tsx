@@ -7,12 +7,13 @@ import Footer from '../components/footer'
 
 function index() {
   return (
-    <div className=" min-h-screen min-w-screen relative overflow-hidden">
+    <div className=" min-h-screen transition-all min-w-screen relative overflow-hidden">
       <Header />
       {/* Hero section */}
-      <section className="pt-48 px-52 font-times flex justify-between">
-        <div className="">
-          <h1 className="text-7xl font-bold mb-4 text-accent-1">
+      <section className="pt-16 md:pt-48 xlresponsive sm:px-52 px-12 font-times flex-col-reverse items-center lg:items-start gap-10 lg:gap-0 lg:flex-row flex justify-between">
+        <div className="mb-8
+        \">
+          <h1 className="text-7xl font-bold lg:mb-4 text-accent-1">
             Hi, I'm Harry
           </h1>
           <h2 className="text-7xl font-bold">
@@ -31,14 +32,15 @@ function index() {
           src={'/undraws/programmer_in_chair.svg'}
           width={400}
           height={400}
+          className='hidden md:block'
           alt="programmer in a chair"
         />
       </section>
 
-      <div className="absolute w-[400vw] h-[400vh] -z-10 -rotate-[40deg] -right-[228.5vw] top-0 bg-grey-light"></div>
+      <div className="absolute w-[400vw] h-[400vh] -z-10 -rotate-[40deg] -right-[235vw] top-0 bg-grey-light"></div>
 
       {/* projects */}
-      <section className="xl:px-32 2xl:px-52 lg:px-30 px-8 my-96 pt-32">
+      <section className="xl:px-32 2xl:px-52 xlresponsive lg:px-32 px-12 md:my-96 my-48 md:pt-32">
         <div className="flex justify-between items-center">
           <h2 className="text-5xl font-bold font-times">Latest Projects</h2>
           <div className="flex items-center space-x-4">
@@ -47,24 +49,23 @@ function index() {
           </div>
         </div>
 
-        <div className="flex flex-col xl:flex-row items-center xl:space-x-8 xl:justify-between my-20">
+        <div className="flex flex-col md:flex-row gap-14 md:gap-0 items-center md:space-x-8 md:justify-between my-20">
           <Portfolio_card
             id={1}
             name="Contact25"
             link="https://contact25.com"
             img='/project_cover_imgs/contact25.png'
           />
-          <div className="mt-20">
+          <div className="md:mt-20">
             <Portfolio_card
               id={2}
               name="Luna Bakehouse"
               link="https://lunabakes.vercel.app"
-              img='/'
+              img='/project_cover_imgs/luna_bakes.png'
             />
           </div>
-          <div className="mt-40">
-            <Portfolio_card id={3} name="Blobparty" link="#" img='/'/>
-  
+          <div className="md:mt-40">
+            <Portfolio_card id={3} name="Blobparty" link="https://blobparty.vercel.app" img='/project_cover_imgs/blobparty.png'/>
           </div>
         </div>
       </section>
@@ -75,15 +76,15 @@ function index() {
           width="full"
           height={'100px'}
           alt="waves"
-          className="z-1 absolute bottom-0"
+          className="z-1 absolute bottom-0 object-cover"
           src="/wave.svg"
           style={{}}
         />
       </section>
 
       {/* Services */}
-      <section className="flex flex-col items-center lg:flex-row space-y-12 lg:space-y-0 justify-between lg:mx-24 py-48">
-        <div className="text-center relative mt-12 mx-24">
+      <section className="flex flex-col xlresponsive items-center lg:flex-row space-y-12 lg:space-y-0 justify-between lg:mx-24 py-48">
+        <div className="text-center relative mt-2 px-24">
           <h2 className="font-times font-bold text-7xl">My Services</h2>
           <p className="font-prompt text-2xl pt-2 pb-24 text-gray-700">
             I do all kinds of neat stuff
@@ -91,12 +92,13 @@ function index() {
           <Image
             alt="a man looking at a project/system overview breakdown"
             src={'/undraws/looking_at_stuff.svg'}
+            className='hidden md:block'
             width={500}
             height={700}
           />
         </div>
 
-        <div className="flex h-fit md:mt-24 md:flex-row text-white flex-col space-y-8 md:space-y-0 md:space-x-8 box-border">
+        <div className="flex h-fit md:mt-24 md:flex-row text-white flex-col md:space-x-8 box-border">
           <div className="flex flex-col space-y-8">
             <div className="w-[280px] h-[140px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
               <h5 className="font-times text-2xl">SEO</h5>
@@ -118,7 +120,7 @@ function index() {
               </p>
             </div>
           </div>
-          <div className="flex flex-col space-y-8 pt-0 sm:pt-12">
+          <div className="flex flex-col space-y-8 md:pt-12 pt-8">
           <div className="w-[280px] h-[200px] p-4 bg-bg-dark md:bg-gradient-to-b from-accent-3 to-accent-2 rounded-xl flex flex-col justify-between">
             <h5 className="font-times text-2xl">UX Design</h5>
             <p className="font-prompt text-sm text-gray-300">

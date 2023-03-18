@@ -16,9 +16,9 @@ function Portfolio_card({
   return (
     <figure className=''>
       <Link href={link} replace>
-        <div className="h-[250px] relative w-[300px] rounded-3xl bg-gray-700">
+        <div className="lg:h-[250px] h-[200px] relative w-[250px] lg:w-[300px] rounded-3xl bg-gray-700">
           <div className="w-full h-full overflow-hidden">
-            <Image alt={`${name} `} className='rounded-3xl hover:opacity-70 transition-all scale-[100.5%]' src={img} fill />
+            <Image alt={`${name} `} className='rounded-3xl object-cover hover:opacity-70 transition-all scale-[100.5%]' src={img} fill />
           </div>
           <div className="absolute -right-4 -bottom-4 w-20 h-20 rounded-xl bg-bg-dark flex justify-center items-center">
             <p className="text-5xl text-white font-prompt">0{id}</p>
