@@ -1,12 +1,33 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 
 function HeaderComponent() {
+
+  const [hasBgOnScroll, sethasBgOnScroll] = useState(false)
+  const navRef = useRef(null)
+
+  useEffect(() => {
+    window.onscroll = function () {
+      appearOnScroll()
+    }
+  }, [])
+
+  function appearOnScroll() {
+    if (
+      document.body.scrollTop > 30 ||
+      document.documentElement.scrollTop > 30
+    ) {
+      sethasBgOnScroll(true)
+    } else {
+      sethasBgOnScroll(false)
+    }
+  }
+
   return (
     <div className="z-50">
-      <header className="tracking-[0.05rem] items-center flex-col justify-center fixed bg-white top-0 w-full hidden sm:flex xl:text-lg font-medium text-gray-500 pt-6 px-14 font-prompt">
+      <header ref={navRef} className={`tracking-[0.05rem] items-center flex-col justify-center fixed ${hasBgOnScroll?'bg-white':'bg-transparent'} transition-all top-0 w-full hidden sm:flex xl:text-lg font-medium text-gray-500 pt-6 px-14 font-prompt`}>
         <div className=" justify-between w-full items-center flex">
           <nav className="flex items-center space-x-8 justify-between">
             <Link href="/" replace className="  hover:text-black">
@@ -29,7 +50,9 @@ function HeaderComponent() {
             </Link>
           </div>
         </div>
+        {hasBgOnScroll&&
         <hr className="border border-gray-600 mt-6 w-[95%]" />
+}       
       </header>
 
       <header className=" sm:hidden px-2 fixed pt-1 w-full bg-white top-0 flex flex-col items-center">
