@@ -7,16 +7,18 @@ import Footer from '../components/footer'
 
 function index() {
   return (
+    <>
+    
     <div className=" min-h-screen transition-all min-w-screen relative overflow-hidden">
-      <Header />
+
       {/* Hero section */}
-      <section className="pt-16 md:pt-48 xlresponsive sm:px-52 px-12 font-times flex-col-reverse items-center lg:items-start gap-10 lg:gap-0 lg:flex-row flex justify-between">
+      <section className=" md:pt-56 pt-32 xlresponsive sm:px-52 px-12 font-times flex-col-reverse items-center lg:items-start gap-10 lg:gap-0 lg:flex-row flex justify-between">
         <div className="mb-8
         \">
-          <h1 className="text-7xl font-bold lg:mb-4 text-accent-1">
+          <h1 className="md:text-7xl text-6xl  font-bold lg:mb-4 text-accent-1">
             Hi, I'm Harry
           </h1>
-          <h2 className="text-7xl font-bold">
+          <h2 className="md:text-7xl text-6xl font-bold">
             Web Designer &<br />
             Developer
           </h2>
@@ -40,7 +42,7 @@ function index() {
       <div className="absolute w-[400vw] h-[400vh] -z-10 -rotate-[40deg] -right-[235vw] top-0 bg-grey-light"></div>
 
       {/* projects */}
-      <section className="xl:px-32 2xl:px-52 xlresponsive lg:px-32 px-12 md:my-96 my-48 md:pt-32">
+      <section className="xl:px-32 2xl:px-52 xlresponsive lg:px-32 px-12 md:my-96 my-32 md:pt-32">
         <div className="flex justify-between items-center">
           <h2 className="text-5xl font-bold font-times">Latest Projects</h2>
           <div className="flex items-center space-x-4">
@@ -70,20 +72,20 @@ function index() {
         </div>
       </section>
 
-      <section className="h-[30rem] py-64 bg-bg-dark z-2 flex relative justify-center items-center text-white">
-        <h5 className="text-5xl font-times mb-32 text-center">Making Waves In Design</h5>
-        <img
+      <section className="h-[30rem] py-64 bg-bg-dark z-2 flex bg-fixed bg-cover relative justify-center items-center text-white">
+        <h5 className="text-5xl font-times mb-32 text-center ">Making Waves In Design</h5>
+        <img  
           width="full"
           height={'100px'}
           alt="waves"
-          className="z-1 absolute bottom-0 object-cover"
+          className="z-1 absolute pointer-events-none bottom-0"
           src="/wave.svg"
           style={{}}
         />
       </section>
 
       {/* Services */}
-      <section className="flex flex-col xlresponsive items-center lg:flex-row space-y-12 lg:space-y-0 justify-between lg:mx-24 py-48">
+      <section className="flex flex-col xlresponsive items-center lg:flex-row space-y-12 lg:space-y-0 justify-evenly py-48">
         <div className="text-center relative mt-2 px-24">
           <h2 className="font-times font-bold text-7xl">My Services</h2>
           <p className="font-prompt text-2xl pt-2 pb-24 text-gray-700">
@@ -98,7 +100,7 @@ function index() {
           />
         </div>
 
-        <div className="flex h-fit md:mt-24 md:flex-row text-white flex-col md:space-x-8 box-border">
+        <div className="flex h-fit md:mt-24 px-24 md:flex-row text-white flex-col md:space-x-8 box-border">
           <div className="flex flex-col space-y-8">
             <div className="w-[280px] h-[140px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
               <h5 className="font-times text-2xl">SEO</h5>
@@ -145,7 +147,10 @@ function index() {
       </section>
 
       <Footer/>
+    <Header />
+
     </div>
+    </>
   )
 }
 
