@@ -17,7 +17,7 @@ function index() {
         <meta charSet="UTF-8"></meta>
         <meta
           httpEquiv="refresh"
-          content="5;url=https://www.harryrussin.com/"
+          content="5;url=https://portfolio-harryrussin.vercel.app"
         ></meta>
         <meta
           name="description"
