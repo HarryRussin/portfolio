@@ -15,10 +15,10 @@ function index() {
           content="width=device-width, initial-scale=1.0"
         ></meta>
         <meta charSet="UTF-8"></meta>
-        <meta
+        {/* <meta
           httpEquiv="refresh"
           content="5;url=https://portfolio-harryrussin.vercel.app"
-        ></meta>
+        ></meta> */}
         <meta
           name="description"
           content="Hi, I'm Harry. I'm a web designer and developer who empowers small businesses with a digital presence. Learn how to create stunning websites with me."
