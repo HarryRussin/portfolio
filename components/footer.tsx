@@ -4,6 +4,7 @@ import {BsInstagram,BsLinkedin,BsFacebook} from 'react-icons/bs'
 import {SlSocialSpotify} from 'react-icons/sl'
 import {AiOutlinePhone} from 'react-icons/ai'
 import {GoMail} from 'react-icons/go'
+import Link from 'next/link'
 
 function Footer() {
   return (
@@ -15,10 +16,20 @@ function Footer() {
             </div>
 
             <div className="flex justify-between items-center w-full">
+                <Link replace href={'https://www.instagram.com/harry_a_russin'}>
             <BsInstagram className='w-10 h-10'/>
+            </Link>
+            <Link replace href={'https://www.linkedin.com/in/harry-russin-8662b9267/'}>
+
             <BsLinkedin className='w-10 h-10'/>
+            </Link>
+            <Link replace href={'https://open.spotify.com/user/0soszp65ps6ucp1tv9rubonhv'}>
+            
             <SlSocialSpotify className='w-10 h-10'/>
+            </Link>
+            <Link replace href={'https://www.facebook.com/profile.php?id=100068125926728'}>
             <BsFacebook className='w-10 h-10'/>
+            </Link>
             </div>
         </div>
 

@@ -1,15 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  MotionValue,
+} from 'framer-motion'
 import Image from 'next/image'
 import Portfolio_card from '../components/portfolio_card'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from 'next/head'
+import { AiOutlineArrowRight } from 'react-icons/ai'
+import Link from 'next/link'
 
 function index() {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref })
+
+  useEffect(() => {
+    console.log(scrollYProgress)
+  }, [scrollYProgress])
+
+  function useParallax(value: MotionValue<number>, distance: number) {
+    return useTransform(value, [0, 1], [-distance, distance])
+  }
+
+  const x = useParallax(scrollYProgress, 500)
+
   return (
     <>
       <Head>
+        <html lang="en" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
@@ -33,19 +55,25 @@ function index() {
             className="mb-8
         \"
           >
-            <h1 className="md:text-7xl text-6xl  font-bold lg:mb-4 text-accent-1">
+            <h1 className="md:text-7xl text-6xl font-bold text-accent-1">
               Hi, I'm Harry
+              <br />
+              <span className="md:text-7xl lg:mt-4 block text-6xl text-black font-bold">
+                Web Designer &<br />
+                Developer
+              </span>
             </h1>
-            <h2 className="md:text-7xl text-6xl font-bold">
-              Web Designer &<br />
-              Developer
-            </h2>
+
             <p className="pt-4 text-gray-700 font-prompt">
               Empowering small businesses with a digital presence
             </p>
-            <button className="font-prompt text-sm pt-16 text-accent-1">
-              <p className="">CONTACT ME --&gt; </p>
-            </button>
+            <Link href={'/contact'}>
+              <button className="font-prompt group flex bg-accent-1 overflow-hidden relative items-center space-x-2 p-2 rounded-md text-sm mt-16 text-white">
+                <div className="group-hover:w-[150%] transition-all h-full duration-500 bg-gradient-to-l from-accent-2 to-accent-3 absolute top-0 w-0 -left-5"></div>
+                <p className=" h-5">CONTACT ME</p>
+                <AiOutlineArrowRight className="h-5 w-8" />
+              </button>
+            </Link>
           </div>
 
           <Image
@@ -96,16 +124,17 @@ function index() {
         </section>
 
         <section className="h-[30rem] py-64 bg-bg-dark z-2 flex bg-fixed bg-cover relative justify-center items-center text-white">
-          <h5 className="text-5xl font-times mb-32 text-center ">
+          <h5
+            className="text-5xl font-times pt-2 text-center "
+          >
             Making Waves In Design
           </h5>
-          <img
-            width="full"
-            height={'100px'}
+          <motion.img
+            ref={ref}
             alt="waves"
-            className="z-1 absolute pointer-events-none bottom-0"
-            src="/wave.svg"
-            style={{}}
+            className="z-1 absolute left-0 pointer-events-none h-[300px] -bottom-4"
+            src="/wave.png"
+            style={{ translateX: x,scaleX: 5}}
           />
         </section>
 
@@ -127,21 +156,21 @@ function index() {
 
           <div className="flex h-fit md:mt-24 px-24 md:flex-row text-white flex-col md:space-x-8 box-border">
             <div className="flex flex-col space-y-8">
-              <div className="w-[280px] h-[140px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
+              <div className="w-[280px] big-shadow h-[140px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
                 <h5 className="font-times text-2xl">SEO</h5>
                 <p className="font-prompt text-sm text-gray-300">
                   SEO is writing information for search engines. It is essential
                   to get your site seen online.
                 </p>
               </div>
-              <div className="w-[280px] h-[220px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
+              <div className="w-[280px] big-shadow h-[220px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
                 <h5 className="font-times text-2xl">Web Development</h5>
                 <p className="font-prompt text-sm text-gray-300">
                   With 4 years of experience working on a vast array of
                   projects, I’ll be sure to deliver on your needs
                 </p>
               </div>
-              <div className="w-[280px] h-[200px] p-4 bg-gradient-to-t from-accent-3 to-accent-2 rounded-xl flex flex-col justify-between">
+              <div className="w-[280px] big-shadow h-[200px] p-4 bg-gradient-to-t from-accent-3 to-accent-2 rounded-xl flex flex-col justify-between">
                 <h5 className="font-times text-2xl">UI Design</h5>
                 <p className="font-prompt text-sm text-gray-300">
                   The design and feel of the website, with a focus on showing
@@ -150,21 +179,21 @@ function index() {
               </div>
             </div>
             <div className="flex flex-col space-y-8 md:pt-12 pt-8">
-              <div className="w-[280px] h-[200px] p-4 bg-bg-dark md:bg-gradient-to-b from-accent-3 to-accent-2 rounded-xl flex flex-col justify-between">
+              <div className="w-[280px] big-shadow h-[200px] p-4 bg-bg-dark md:bg-gradient-to-b from-accent-3 to-accent-2 rounded-xl flex flex-col justify-between">
                 <h5 className="font-times text-2xl">UX Design</h5>
                 <p className="font-prompt text-sm text-gray-300">
                   A focus placed on the quality of the user experience and
                   culturally relevant solutions
                 </p>
               </div>
-              <div className="w-[280px] h-[140px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
+              <div className="w-[280px] big-shadow h-[140px] p-4 bg-bg-dark rounded-xl flex flex-col justify-between">
                 <h5 className="font-times text-2xl">Analytics</h5>
                 <p className="font-prompt text-sm text-gray-300">
                   Explore how many people are visit your site. How long do they
                   stay? What do they do?
                 </p>
               </div>
-              <div className="w-[280px] h-[220px] p-4 md:from-bg-dark md:to-bg-dark bg-gradient-to-b from-accent-3 to-accent-2  rounded-xl flex flex-col justify-between">
+              <div className="w-[280px] big-shadow h-[220px] p-4 md:from-bg-dark md:to-bg-dark bg-gradient-to-b from-accent-3 to-accent-2  rounded-xl flex flex-col justify-between">
                 <h5 className="font-times text-2xl">Backend</h5>
                 <p className="font-prompt text-sm text-gray-300">
                   Fast and lightweight backends are my specialty. I’ll make

@@ -16,4 +16,7 @@
     .xlresponsive {
         @apply xl:mx-auto xl:max-w-[1600px]
     }
+    .big-shadow{
+        @apply shadow-[0_3px_30px_5px_rgba(6,6,6,0.3)]
+    }
 }

@@ -22,8 +22,10 @@ function HeaderCompoent() {
             </Link>
           </nav>
           <div>
-            <button className="bg-black hover:brightness-90 text-white rounded-md px-10 py-1">
+            <button className="bg-black hover:brightness-90 text-white relative overflow-hidden group rounded-md px-10 py-1">
               Hire Me
+              <div className="group-hover:w-[150%] z-30 transition-all h-[110%] duration-500 bg-gradient-to-r from-accent-1 to-blue-400 absolute top-0 w-0 -left-5"></div>
+
             </button>
           </div>
         </div>

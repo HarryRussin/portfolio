@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import {motion} from 'framer-motion'
 
 function Portfolio_card({
   id,
@@ -14,7 +15,14 @@ function Portfolio_card({
   img: string
 }) {
   return (
-    <figure className=''>
+    <motion.figure initial={
+      {
+        x:`-${5*(id-1)}rem`,
+        y:`-${5*(id-1)}rem`
+    }
+    } 
+    // @ts-ignore
+    whileInView={{x:0,y:0,animationDelay:(id-1)*1}} className='duration-500'>
       <Link href={link} replace>
         <div className="lg:h-[250px] h-[200px] relative w-[250px] lg:w-[300px] rounded-3xl bg-gray-700">
           <div className="w-full h-full overflow-hidden">
@@ -29,7 +37,7 @@ function Portfolio_card({
       </figcaption>
       </Link>
 
-    </figure>
+    </motion.figure>
   )
 }
 
