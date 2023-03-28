@@ -32,11 +32,6 @@ function index() {
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        ></meta>
-        <meta charSet="UTF-8"></meta>
         {/* <meta
           httpEquiv="refresh"
           content="5;url=https://portfolio-harryrussin.vercel.app"
@@ -45,10 +40,6 @@ function index() {
           name="description"
           content="Hi, I'm Harry. I'm a web designer and developer who empowers small businesses with a digital presence. Learn how to create stunning websites with me."
         />
-        <meta
-            name="keywords"
-            content="web development, portfolio, webdev plan, basic plan, standard plan, premium plan"
-          />
           <meta name="author" content="Harry Russin" />
         <title>Portfolio & Home Page - Harry Russin</title>
       </Head>
