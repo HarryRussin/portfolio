@@ -17,6 +17,7 @@ import Link from 'next/link'
 function index() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref })
+  const year = new Date().getFullYear()
 
   useEffect(() => {
     console.log(scrollYProgress)
@@ -44,6 +45,11 @@ function index() {
           name="description"
           content="Hi, I'm Harry. I'm a web designer and developer who empowers small businesses with a digital presence. Learn how to create stunning websites with me."
         />
+        <meta
+            name="keywords"
+            content="web development, portfolio, webdev plan, basic plan, standard plan, premium plan"
+          />
+          <meta name="author" content="Harry Russin" />
         <title>Portfolio & Home Page - Harry Russin</title>
       </Head>
 
@@ -90,9 +96,9 @@ function index() {
         <section className="xl:px-32 2xl:px-52 xlresponsive lg:px-32 px-12 md:my-96 my-32 md:pt-32">
           <div className="flex justify-between items-center">
             <h2 className="text-5xl font-bold font-times">Latest Projects</h2>
-            <div className="flex items-center space-x-4">
-              <p className="text-sm font-prompt font-bold">all projects</p>
-              <div className="w-8 h-8 bg-bg-dark rounded-md"></div>
+            <div className="flex items-center flex-col space-x-4">
+              <p className="text-sm font-prompt font-bold">As of {year}</p>
+              <hr className='border-black border-2 w-28'/>
             </div>
           </div>
 

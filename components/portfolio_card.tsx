@@ -23,7 +23,7 @@ function Portfolio_card({
     } 
     // @ts-ignore
     whileInView={{x:0,y:0,animationDelay:(id-1)*1}} className='duration-500'>
-      <Link href={link} replace>
+      <Link href={link} target={'_blank'} replace>
         <div className="lg:h-[250px] h-[200px] relative w-[250px] lg:w-[300px] rounded-3xl bg-gray-700">
           <div className="w-full h-full overflow-hidden">
             <Image alt={`${name} `} className='rounded-3xl object-cover hover:opacity-70 transition-all scale-[100.5%]' src={img} fill />

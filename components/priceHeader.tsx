@@ -13,11 +13,11 @@ function HeaderCompoent() {
               Projects
             </Link>
 
-            <Link href="/about" className=" hover:text-black">
+            {/* <Link href="/about" className=" hover:text-black">
               About
-            </Link>
+            </Link> */}
 
-            <Link href="#" className=" hover:text-black">
+            <Link href="/contact" className=" hover:text-black">
               Contact Me
             </Link>
           </nav>
