@@ -8,7 +8,49 @@ import HeaderCompoent from '../components/priceHeader'
 
 function HireMe() {
   const [plan, setplan] = useState('basic')
+  const [name, setname] = useState('')
+  const [email, setemail] = useState('')
+  const [message, setmessage] = useState('')
+  const [date, setdate] = useState('')
+  const [submitted, setsubmitted] = useState(true)
+
   const router = useRouter()
+  const today = new Date().toISOString().split('T')[0];
+
+  function handleSubmit(e: any) {
+    setsubmitted(false)
+    e.preventDefault()
+
+    let data = {
+      name,
+      email,
+      message,
+      plan,
+      date,
+    }
+
+    fetch('/api/salecontact', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      
+    }).then((res) => {
+      console.log('Response received')
+      if (res.status === 200) {
+        console.log('Response succeeded!')
+        setsubmitted(true)
+        setname('')
+        setemail('')
+        setmessage('')
+        setdate('')
+      }
+      else{console.log('Rsesponse failed')}
+    })
+  }
+
   {
     return (
       <>
@@ -29,7 +71,7 @@ function HireMe() {
           <meta name="author" content="Harry Russin" />
           <title>Web Development Plans - Harry Russin</title>
         </Head>
-        
+
         <main className="relative">
           <HeaderCompoent />
           <div className="md:h-[50vh] -z-10 w-full h-[70vh] bg-gradient-to-b absolute top-12 sm:top-20 from-accent-4 to-white"></div>
@@ -64,10 +106,13 @@ function HireMe() {
                   £
                 </p>
               </div>
-              <button onClick={() => {
+              <button
+                onClick={() => {
                   setplan('basic')
                   router.push('#contactForm')
-                }} className="bg-white hover:brightness-90  text-purple3 font-bold px-6 rounded-lg py-2">
+                }}
+                className="bg-white hover:brightness-90  text-purple3 font-bold px-6 rounded-lg py-2"
+              >
                 Select
               </button>
             </div>
@@ -93,10 +138,13 @@ function HireMe() {
                   £
                 </p>
               </div>
-              <button onClick={() => {
+              <button
+                onClick={() => {
                   setplan('standard')
                   router.push('#contactForm')
-                }} className="bg-white hover:brightness-90  text-blue1 font-bold px-6 rounded-lg py-2">
+                }}
+                className="bg-white hover:brightness-90  text-blue1 font-bold px-6 rounded-lg py-2"
+              >
                 Select
               </button>
             </div>
@@ -134,7 +182,7 @@ function HireMe() {
             </div>
           </section>
 
-          <section className="flex flex-col font-prompt justify-center items-stretch px-32 mt-32 mb-48 py-16">
+          <section className="flex xlresponsive flex-col font-prompt justify-center items-stretch px-8 md:px-32 mt-32 mb-48 py-16">
             <div className="text-center mb-12">
               <h2 className="text-5xl tracking-widest">
                 Let&apos;s Work Together
@@ -144,21 +192,26 @@ function HireMe() {
 
             {/* FORM name and email */}
             <form
+              onSubmit={handleSubmit}
               id="contactForm"
-              className="flex justify-between h-full space-x-20 mt-8"
+              className="flex justify-between lg:flex-row flex-col h-full items-center lg:space-x-20 mt-8"
             >
-              <div className="flex flex-col justify-between w-1/2">
+              <div className="flex flex-col justify-between space-y-10 mb-12 lg:mb-0 w-full lg:w-1/2">
                 <input
+                  value={name}
+                  onChange={(e) => setname(e.target.value)}
                   required
                   type="text"
                   placeholder="Name"
                   className="border-b-2 shadow-xl border-black bg-transparent px-1.5"
                 />
                 <input
+                  value={email}
+                  onChange={(e) => setemail(e.target.value)}
                   required
                   type="email"
                   placeholder="Email"
-                  className="border-b-2 shadow-sm border-black bg-transparent px-1.5"
+                  className="border-b-2 shadow-xl border-black bg-transparent px-1.5"
                 />
 
                 {/* DROP DOWN */}
@@ -169,26 +222,67 @@ function HireMe() {
 
                   <div className="border-2 shadow-xl relative border-black bg-transparent px-1.5">
                     <input
+                      value={date}
+                      min={today}
+                      onChange={(e) => setdate(e.target.value)}
                       type="date"
                       className="w-full focus:outline-none"
                       placeholder="Expected Deadline"
-                      defaultValue={'None'}
                     />
                   </div>
                 </div>
-                <div className="flex justify-between">
-                  <div onClick={()=>setplan('basic')} className={`${plan === 'basic'?'w-1/4 bg-accent-2':'bg-bg-dark w-1/3'}   h-24 rounded-md transition-all  text-lg text-white font-bold flex justify-center hover:bg-bg-light items-center`}><p>BASIC</p></div>
-                  <div onClick={()=>setplan('standard')} className={`${plan === 'standard'?'w-1/4 bg-accent-2':'bg-bg-dark w-1/3'}   h-24 rounded-md text-lg text-white font-bold transition-all flex justify-center hover:bg-bg-light items-center`}><p>STANDARD</p></div>
-                  <div onClick={()=>setplan('creator')} className={`${plan === 'creator'?'w-1/4 bg-accent-2':'bg-bg-dark w-1/3'}   h-24 rounded-md text-lg text-white font-bold  transition-all flex justify-center hover:bg-bg-light items-center`}><p>CREATOR</p></div>
+                <div className="flex md:flex-row space-y-2 md:space-y-0 flex-col justify-between">
+                  <div
+                    onClick={() => setplan('basic')}
+                    className={`${
+                      plan === 'basic'
+                        ? 'md:w-1/4 bg-accent-2 h-8'
+                        : 'bg-bg-dark md:w-1/3 h-10'
+                    }   md:h-24 rounded-md transition-all  text-lg text-white font-bold flex justify-center hover:bg-bg-light items-center`}
+                  >
+                    <p>BASIC</p>
+                  </div>
+                  <div
+                    onClick={() => setplan('standard')}
+                    className={`${
+                      plan === 'standard'
+                        ? 'md:w-1/4 bg-accent-2 h-8'
+                        : 'bg-bg-dark md:w-1/3 h-10'
+                    }   md:h-24 rounded-md text-lg text-white font-bold transition-all flex justify-center hover:bg-bg-light items-center`}
+                  >
+                    <p>STANDARD</p>
+                  </div>
+                  <div
+                    onClick={() => setplan('creator')}
+                    className={`${
+                      plan === 'creator'
+                        ? 'md:w-1/4 bg-accent-2 h-8'
+                        : 'bg-bg-dark md:w-1/3 h-10'
+                    }   md:h-24 rounded-md text-lg text-white font-bold  transition-all flex justify-center hover:bg-bg-light items-center`}
+                  >
+                    <p>CREATOR</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col space-y-6 w-1/2">
-                <textarea name="" id="" placeholder='A brief description of your project' className='border-2 border-black rounded p-2 box-content' cols={22} rows={9}></textarea>
-                <button className='bg-accent-1 py-4 rounded text-lg font-bold text-white tracking-wider '>Deliver The Mail</button>
+              <div className="flex flex-col space-y-6 w-full lg:w-1/2">
+                <textarea
+                  onChange={(e)=>setmessage(e.target.value)}
+                  value={message}
+                  placeholder="A brief description of your project"
+                  className="border-2 border-black rounded p-2 box-content"
+                  cols={22}
+                  rows={9}
+                ></textarea>
+                <button
+                  type="submit"
+                  className="bg-accent-1 py-4 rounded text-lg font-bold text-white tracking-wider "
+                >
+                  Deliver The Mail
+                </button>
               </div>
             </form>
           </section>
-          <Footer/>
+          <Footer />
         </main>
       </>
     )

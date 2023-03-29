@@ -17,9 +17,9 @@ export default function (req: Request, res: any) {
     from: 'spamharryr@gmail.com',
     to: 'harryrussindev@gmail.com',
     // @ts-ignore
-    subject: `INFO - harryrussindev`,
+    subject: `CUSTOMER - harryrussindev`,
     // @ts-ignore
-    text: `Name: ${req.body.name}\n\nMessage: ${req.body.message}\n\nSender Email: ${req.body.email}`,
+    text: `Name: ${req.body.name}\n\nMessage: ${req.body.message}\n\nSelected Plan: ${req.body.plan.toUpperCase()}\n\nExpected Deadline: ${req.body.date}\n\nSender Email: ${req.body.email}`,
   }
 
   transporter.sendMail(mailData, function (err: any, info: any) {

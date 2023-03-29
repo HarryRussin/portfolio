@@ -37,23 +37,23 @@ function Footer() {
             <div className="flex flex-col space-y-6">
                 <div className="flex items-center space-x-2">
                     <AiOutlinePhone className='h-6 w-6'/>
-                    <p>+44 79-476-88762</p>
+                    <a href='tel:+447947688762'><p>+44 79-476-88762</p></a>
                 </div>
                 <div className="flex items-center space-x-2">
                     <GoMail className='w-6 h-6'/>
-                    <p>harryrussindev@gmail.com</p>
+                    <a href='mailto:harryrussindev@gmail.com'><p>harryrussindev@gmail.com</p></a>
                 </div>
             </div>
 
             <div className="flex md:flex-col space-x-8 space-y-0 md:space-x-0 md:space-y-6">
-                <p>about</p>
-                <p>contact</p>
-                <p>hire me</p>
+                {/* <Link href={'/about'}><p>about</p></Link> */}
+                <Link href={'/contact'} ><p>contact</p></Link>
+                <Link href={'/hire-me'} ><p>hire me</p></Link>
             </div>
 
             <div className="flex md:flex-col space-x-8 md:space-x-0 md:space-y-6">
-                <p>cookie policy</p>
-                <p>privacy policy</p>
+                <Link href={'/policies/cookie'} replace><p>cookie policy</p></Link>
+                <Link href={'/policies/privacy'}><p>privacy policy</p></Link>
             </div>
         </div>
         <Image width={300} height={200} alt='aircraft svg' src={'/undraws/plane.svg'} className='absolute -top-20 right-8'/>

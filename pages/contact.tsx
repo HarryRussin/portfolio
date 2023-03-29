@@ -31,6 +31,7 @@ function Contact() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+      
     }).then((res) => {
       console.log('Response received')
       if (res.status === 200) {
@@ -40,6 +41,7 @@ function Contact() {
         setemail('')
         setmessage('')
       }
+      else{console.log('Response failed')}
     })
   }
 
@@ -47,7 +49,7 @@ function Contact() {
     <main>
       <HeaderComponent />
 
-      <div className="pt-44 flex flex-col items-center">
+      <div className="pt-44 flex flex-col text-center items-center">
         <h1 className="font-times text-6xl font-bold">
           Let&apos;s get in touch
         </h1>
@@ -58,11 +60,12 @@ function Contact() {
           </p>
         </div>
 
-        <div className="flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-36 md:space-x-32 mt-16 items-center">
+        <div className="flex-col flex md:flex-row justify-between lg:px-10 space-y-8 md:space-y-0 mb-36 md:space-x-32 mt-16 items-center">
           <Image
             alt="mailbox image undraw"
             src={'/undraws/mail.svg'}
             width={'400'}
+            className='hidden md:block'
             height={'300'}
           />
           <form
@@ -96,12 +99,17 @@ function Contact() {
             ></textarea>
             <button
               type="submit"
-              className={`w-full py-2 ${!submitted?'bg-accent-4':'bg-gradient-to-b transition-all from-blue1 to-blue3'} rounded-2xl hover:from-blue2 hover:to-blue1 font-bold`}
+              className={`w-full py-2 ${
+                !submitted
+                  ? 'bg-accent-4'
+                  : 'bg-gradient-to-b transition-all from-blue1 to-blue3'
+              } rounded-2xl hover:from-blue2 hover:to-blue1 font-bold`}
             >
-              {submitted?
-              <p>Send Message</p>
-              :<p className='animate-pulse'>Sending...</p>
-}
+              {submitted ? (
+                <p>Send Message</p>
+              ) : (
+                <p className="animate-pulse">Sending...</p>
+              )}
             </button>
           </form>
         </div>
