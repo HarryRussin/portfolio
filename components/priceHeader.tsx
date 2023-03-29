@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
+import React,{useState} from 'react';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 
 function HeaderCompoent() {
+  const [openNav, setopenNav] = useState(false)
   return (
    
-    <div className="z-50">
+    <div className="z-50 relative">
       <header className="tracking-[0.05rem] items-center flex-col justify-center bg-accent-4 w-full hidden sm:flex xl:text-lg font-medium text-gray-500 py-6 px-14 font-prompt">
         <div className=" justify-between w-full items-center flex">
           <nav className="flex items-center text-white space-x-8 justify-between">
@@ -31,11 +32,19 @@ function HeaderCompoent() {
         </div>
       </header>
 
-      <header className=" sm:hidden px-2 pt-1 w-full text-white bg-accent-4 top-0 flex flex-col items-center">
+      <header className={`sm:hidden px-2 overflow-hidden pt-1 w-full ${openNav?'h-full':'h-12'} transition-all fixed text-white bg-accent-4 top-0 flex flex-col items-center`}>
         <div className="flex justify-between pb-1 w-full items-center">
-          <p className="text-4xl font-times font-bold">HR</p>
-          <HiOutlineMenuAlt3 className="w-10 h-10" />
+        <Link href='/'><p className="text-4xl font-times font-bold">HR</p></Link>
+
+          <HiOutlineMenuAlt3 onClick={()=>setopenNav(!openNav)} className="w-10 h-10" />
         </div>
+        <nav className="pt-32  text-2xl font-times">
+          <ul className='flex flex-col space-y-8'>
+          <li className=' flex'>○<Link href={'/'} ><p className='ml-2 link'>Home</p></Link></li>
+          <li className='flex'>○<Link href={'/contact'} ><p className='ml-2 link'> Contact</p></Link></li>
+          <li className='flex'>○<Link href={'/hire-me'} ><p className='ml-2 link'> Hire Me</p></Link></li>
+          </ul>
+        </nav>
       </header>
     </div>
     

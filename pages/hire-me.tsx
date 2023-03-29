@@ -74,7 +74,7 @@ function HireMe() {
 
         <main className="relative">
           <HeaderCompoent />
-          <div className="md:h-[50vh] -z-10 w-full h-[70vh] bg-gradient-to-b absolute top-12 sm:top-20 from-accent-4 to-white"></div>
+          <div className="md:h-[50vh] -z-10 w-full h-[70vh] bg-gradient-to-b absolute -top-4 sm:top-20 from-accent-4 to-white"></div>
           <div className="flex justify-center my-16 xlresponsive">
             <div className="text-center  text-white font-prompt tracking-[0.1rem] font-bold">
               <h1 className=" text-6xl lg:text-5x1  flex flex-col">

@@ -6,6 +6,7 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 function HeaderComponent() {
 
   const [hasBgOnScroll, sethasBgOnScroll] = useState(false)
+  const [openNav, setopenNav] = useState(false)
   const navRef = useRef(null)
 
   useEffect(() => {
@@ -53,12 +54,19 @@ function HeaderComponent() {
         </div>
       </header>
 
-      <header className=" sm:hidden px-2 fixed pt-1 w-full bg-white top-0 flex flex-col items-center">
+      <header className={`sm:hidden px-2 fixed pt-1 w-full transition-all overflow-hidden bg-white ${openNav?'h-full':'h-12'} duration-300 top-0 flex flex-col items-center`}>
         <div className="flex justify-between pb-1 w-full items-center">
-          <p className="text-4xl font-times font-bold">HR</p>
-          <HiOutlineMenuAlt3 className="w-10 h-10" />
+          <Link href='/'><p className="text-4xl font-times font-bold">HR</p></Link>
+          <HiOutlineMenuAlt3 onClick={()=>setopenNav(!openNav)} className="w-10 h-10" />
         </div>
         <hr className="border border-gray-900 w-[95%]" />
+        <nav className="pt-32  text-2xl font-times">
+          <ul className='flex flex-col space-y-8'>
+          <li className=' flex'>○<Link href={'/'} ><p className='ml-2 link'>Home</p></Link></li>
+          <li className='flex'>○<Link href={'/contact'} ><p className='ml-2 link'> Contact</p></Link></li>
+          <li className='flex'>○<Link href={'/hire-me'} ><p className='ml-2 link'> Hire Me</p></Link></li>
+          </ul>
+        </nav>
       </header>
     </div>
   )

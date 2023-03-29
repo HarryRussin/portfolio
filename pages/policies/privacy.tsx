@@ -3,27 +3,27 @@ import React from 'react'
 function privacy() {
   return (
     <div>
-       <p> 1. Personal Information
+       <p className='font-bold'> 1. Personal Information</p>
 
-We may collect personal information such as your name and email address when you contact us through our website.
+<p>We may collect personal information such as your name and email address when you contact us through our website.</p>
 
-2. How We Use Your Information
+<p className='font-bold'>2. How We Use Your Information</p>
 
-We use your personal information to respond to your inquiries and provide you with information about our services.
+<p>We use your personal information to respond to your inquiries and provide you with information about our services.</p>
 
-3. Sharing Your Information
+<p className='font-bold'>3. Sharing Your Information</p>
 
-We do not share your personal information with third parties.
+<p>We do not share your personal information with third parties.</p>
 
-4. Security
+<p className='font-bold'>4. Security</p>
 
-We take reasonable steps to protect your personal information from unauthorized access or disclosure.
+<p>We take reasonable steps to protect your personal information from unauthorized access or disclosure.</p>
 
-5. Changes to This Privacy Policy
+<p className='font-bold'>5. Changes to This Privacy Policy</p>
 
-We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on our website.
+<p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on our website.</p>
 
-If you have any questions about this privacy policy, please contact us at harryrussindev@gmail.com.</p>
+<p>If you have any questions about this privacy policy, please contact us at <span className='font-bold'>harryrussindev@gmail.com.</span></p>
     </div>
   
   )
